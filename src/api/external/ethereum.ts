@@ -1,7 +1,10 @@
+import { findNestedKey } from "@galacticcouncil/sdk"
 import { chainsMap } from "@galacticcouncil/xcm-cfg"
 import { EvmChain } from "@galacticcouncil/xcm-core"
 import { useQuery, UseQueryOptions } from "@tanstack/react-query"
 import { millisecondsInHour } from "date-fns"
+import { TAsset, useAssets } from "providers/assets"
+import { useMemo } from "react"
 import { QUERY_KEYS } from "utils/queryKeys"
 
 export const ethereum = chainsMap.get("ethereum") as EvmChain
@@ -57,4 +60,23 @@ export const useLIDOEthAPR = (options: UseQueryOptions<number> = {}) => {
     ...lidoEthAPRQuery,
     ...options,
   })
+}
+
+export const useEthereumTokens = (): Map<string, TAsset> => {
+  const { tokens } = useAssets()
+  return useMemo(() => {
+    const ethTokens = tokens.filter(
+      (token) => !!findNestedKey(token.location, "ethereum"),
+    )
+    return new Map(
+      ethTokens.map((token) => {
+        const key = findNestedKey(
+          token.location,
+          "accountKey20",
+        )?.accountKey20?.key?.toLowerCase()
+
+        return [key || "native", token]
+      }),
+    )
+  }, [tokens])
 }
