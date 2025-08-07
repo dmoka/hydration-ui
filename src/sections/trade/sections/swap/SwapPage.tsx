@@ -56,6 +56,7 @@ const grafanaDsn = import.meta.env.VITE_GRAFANA_DSN
 const stableCoinAssetId = import.meta.env.VITE_STABLECOIN_ASSET_ID
 
 export function SwapPage() {
+  console.log("SwapPage loaded")
   const { isLoaded } = useRpcProvider()
   const { account } = useAccount()
   const { createTransaction } = useStore()

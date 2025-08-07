@@ -22,6 +22,7 @@ const history = createBrowserHistory()
 const location = new ReactLocation({ history })
 
 export const App = () => {
+  console.log("App loaded")
   useEffect(() => {
     const [html] = document.getElementsByTagName("html")
     const [head] = document.getElementsByTagName("head")
