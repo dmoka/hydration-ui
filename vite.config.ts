@@ -44,6 +44,9 @@ export default defineConfig(({ command }) => {
     build: {
       target: "esnext",
       outDir: "build",
+      esbuild: {
+        drop: [],
+      },
     },
     optimizeDeps: {
       esbuildOptions: {
