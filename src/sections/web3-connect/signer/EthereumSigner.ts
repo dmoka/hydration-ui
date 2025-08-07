@@ -252,6 +252,7 @@ export class EthereumSigner {
   }
 
   sendTransaction = async (tx: TransactionRequest, options: TxOptions = {}) => {
+    console.log("Sending transaction from EthereumSigner")
     const { chain, txWeight, nonce: customNonce } = options
     const from = chain && chainsMap.get(chain)?.isEvmChain ? chain : "hydration"
 
