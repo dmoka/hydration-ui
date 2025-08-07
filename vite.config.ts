@@ -55,6 +55,7 @@ export default defineConfig(({ command }) => {
     },
     esbuild: {
       logOverride: { "this-is-undefined-in-esm": "silent" },
+      drop: [],
     },
     resolve:
       command === "build"
