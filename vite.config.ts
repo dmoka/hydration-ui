@@ -45,17 +45,14 @@ export default defineConfig(({ command }) => {
       target: "esnext",
       outDir: "build",
       esbuild: {
-        drop: [],
+        logOverride: { "this-is-undefined-in-esm": "silent" },
+        pure: [],
       },
     },
     optimizeDeps: {
       esbuildOptions: {
         target: "esnext",
       },
-    },
-    esbuild: {
-      logOverride: { "this-is-undefined-in-esm": "silent" },
-      drop: [],
     },
     resolve:
       command === "build"
