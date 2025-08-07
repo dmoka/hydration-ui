@@ -1030,11 +1030,21 @@ export const createPoolSlice: StateCreator<
       const gasOnePrc = gasPrice.div(100)
       const gasPricePlus = gasPrice.add(gasOnePrc)
 
-      // const estimatedGas = await provider.estimateGas(tx)
+      const estimatedGas = await provider.estimateGas(tx)
+      console.log(`Estiamtes gas: ${estimatedGas}`);
       // gas estimator is unreliable, so we use a recommended value for specific action
-      const estimatedGas = action
+      const estimatedGas2 = action
         ? gasLimitRecommendations[action].recommended
         : tx?.gasLimit || gasLimitRecommendations.default.recommended
+
+      console.log(`action: ${action}`);
+            console.log(`gasLimitRecommendations[action].recommended: ${gasLimitRecommendations[action].recommended}`);
+
+                  console.log(`tx?.gasLimit: ${tx?.gasLimit}`);
+                  console.log(`t gasLimitRecommendations.default.recommended: ${gasLimitRecommendations.default.recommended}`);
+
+      console.log(`estimatedGas2: ${estimatedGas2}`);
+
 
       const gasLimit = BigNumber.from(estimatedGas)
 
