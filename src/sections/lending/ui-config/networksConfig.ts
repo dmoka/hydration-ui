@@ -5,7 +5,7 @@ import { wssToHttps } from "sections/lending/utils/utils"
 import { groupBy } from "utils/rx"
 
 export enum ChainId {
-  hydration = 222222,
+  hydration = 222222222,
   // Mock Hydration testnet chain ID so we can differentiate between mainnet and testnet
   hydration_testnet = 333333,
 }
